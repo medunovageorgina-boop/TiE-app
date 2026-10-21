@@ -239,7 +239,7 @@
       letter-spacing: 0.5px;
     }
 
-    /* БАББЛЫ ЧАТА С ЖАЛОБАМИ (ПРАВКАМИ 0/9) */
+    /* БАББЛЫ ЧАТА С ЖАЛОБАМИ И ПРАВКАМИ */
     .chat-container {
       flex: 1;
       display: flex;
@@ -308,7 +308,7 @@
 <div class="app-container">
   <!-- ШАПКА -->
   <header>
-    <div class="avatar-circle" id="btn-avatar">
+    <div class="avatar-circle" onclick="openPage('settings')">
       <svg viewBox="0 0 100 100" fill="none">
         <path d="M 20,28 L 32,46 L 68,46 L 80,28 L 74,68 C 74,82 26,82 26,68 Z" fill="#000000" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
         <path d="M 26,33 L 34,44" stroke="#ffffff" stroke-width="2"/>
@@ -327,26 +327,26 @@
   <main>
     <!-- ГЛАВНОЕ МЕНЮ -->
     <div id="p-home" class="page active">
-      <button class="btn-card" id="btn-nav-history">
+      <button class="btn-card" onclick="openPage('history')">
         <span>📋 ИСТОРИЯ</span>
         <small style="color:var(--text-muted)">Все текстовые RP сюжеты</small>
       </button>
 
       <div class="grid-2">
-        <button class="btn-card btn-tie-new" id="btn-nav-new-rp">
+        <button class="btn-card btn-tie-new" onclick="openPage('new-rp')">
           <svg class="tie-icon-svg" viewBox="0 0 32 36" fill="none">
             <path d="M 10,2 L 22,2 L 25,12 L 18,30 L 16,34 L 14,30 L 7,12 Z" fill="var(--accent-beige)"/>
             <path d="M 11,2 L 21,2 L 19,8 L 13,8 Z" fill="#121620"/>
           </svg>
           <strong>НОВЫЙ RP</strong>
         </button>
-        <button class="btn-card" id="btn-nav-settings" style="justify-content:center; align-items:center; text-align:center;">
+        <button class="btn-card" onclick="openPage('settings')" style="justify-content:center; align-items:center; text-align:center;">
           <span>⚙️</span>
           <strong>НАСТРОЙКИ</strong>
         </button>
       </div>
 
-      <button class="btn-card" id="btn-nav-bots" style="padding:22px; text-align:center; align-items:center;">
+      <button class="btn-card" onclick="openPage('bots')" style="padding:22px; text-align:center; align-items:center;">
         <strong>🤖 БОТЫ ДЛЯ RP</strong>
       </button>
     </div>
@@ -355,7 +355,7 @@
     <div id="p-history" class="page">
       <h3 style="font-size:16px;">История RP</h3>
       <div id="history-list" style="display:flex; flex-direction:column; gap:10px; flex:1; overflow-y:auto;"></div>
-      <button class="btn-card btn-back-home" style="text-align:center;">← Назад</button>
+      <button class="btn-card" onclick="openPage('home')" style="text-align:center;">← Назад</button>
     </div>
 
     <!-- СОЗДАНИЕ RP -->
@@ -386,15 +386,15 @@
         </label>
       </div>
 
-      <button class="btn-card" id="btn-create-rp-action" style="background:var(--accent-navy); border-color:var(--accent-beige); text-align:center; margin-top:auto;">
+      <button class="btn-card" style="background:var(--accent-navy); border-color:var(--accent-beige); text-align:center; margin-top:auto;" onclick="createNewRP()">
         <strong>Начать историю</strong>
       </button>
-      <button class="btn-card btn-back-home" style="text-align:center;">Отмена</button>
+      <button class="btn-card" onclick="openPage('home')" style="text-align:center;">Отмена</button>
     </div>
 
     <!-- ЧАТ -->
     <div id="p-chat" class="page">
-      <div class="chat-header-bar" id="chat-header-trigger">
+      <div class="chat-header-bar" onclick="openParamsModal()">
         <div>
           <strong id="chat-title-text">Потерянная расчёска</strong><br>
           <small style="color:var(--accent-beige)">Нажмите для изменения параметров</small>
@@ -406,11 +406,11 @@
 
       <div style="display:flex; gap:8px; margin-top:auto;">
         <input type="text" id="chat-input-field" placeholder="Напишите сообщение...">
-        <button class="btn-card" id="btn-send-message" style="width:84px; justify-content:center; align-items:center; padding:0;">
+        <button class="btn-card" style="width:84px; justify-content:center; align-items:center; padding:0;" onclick="sendChatMessage()">
           Отправить
         </button>
       </div>
-      <button class="btn-card" id="btn-chat-to-history" style="text-align:center; padding:10px;">← К историям</button>
+      <button class="btn-card" onclick="openPage('history')" style="text-align:center; padding:10px;">← К историям</button>
     </div>
 
     <!-- НАСТРОЙКИ -->
@@ -426,32 +426,32 @@
         <label>Пароль приложения (PIN):</label>
         <input type="password" id="app-pin-code" value="0000">
       </div>
-      <button class="btn-card" id="btn-save-settings" style="background:var(--accent-navy); text-align:center;">
+      <button class="btn-card" style="background:var(--accent-navy); text-align:center;" onclick="alert('Настройки сохранены')">
         Сохранить настройки
       </button>
-      <button class="btn-card btn-back-home" style="text-align:center;">← Назад</button>
+      <button class="btn-card" onclick="openPage('home')" style="text-align:center;">← Назад</button>
     </div>
 
     <!-- КОРЗИНА (86 ЧАСОВ) -->
     <div id="p-trash" class="page">
       <h3 style="font-size:16px;">Корзина (86 часов)</h3>
       <div id="trash-items-box" style="display:flex; flex-direction:column; gap:10px; flex:1; overflow-y:auto;"></div>
-      <button class="btn-card btn-back-home" style="text-align:center;">← Назад</button>
+      <button class="btn-card" onclick="openPage('home')" style="text-align:center;">← Назад</button>
     </div>
 
     <!-- БОТЫ ДЛЯ RP -->
     <div id="p-bots" class="page">
       <h3 style="font-size:16px;">Публичные Боты</h3>
       <div id="public-bots-box" style="display:flex; flex-direction:column; gap:10px; flex:1; overflow-y:auto;"></div>
-      <button class="btn-card btn-back-home" style="text-align:center;">← Назад</button>
+      <button class="btn-card" onclick="openPage('home')" style="text-align:center; margin-top:auto;">← Назад</button>
     </div>
   </main>
 
   <!-- НАВИГАЦИЯ -->
   <nav>
-    <button class="nav-btn" id="btn-lang-toggle">LA (<span id="lang-indicator">RU</span>)</button>
-    <button class="nav-btn power-btn" id="btn-power-lock">ВЫКЛЮЧИТЬ</button>
-    <button class="nav-btn" id="btn-nav-trash">КОРЗИНА</button>
+    <button class="nav-btn" onclick="rotateLanguage()">LA (<span id="lang-indicator">RU</span>)</button>
+    <button class="nav-btn power-btn" onclick="document.getElementById('lock-modal').classList.add('active')">ВЫКЛЮЧИТЬ</button>
+    <button class="nav-btn" onclick="openPage('trash')">КОРЗИНА</button>
   </nav>
 
   <!-- МОДАЛКИ -->
@@ -460,10 +460,10 @@
       <h3 style="font-size:15px;">Параметры RP</h3>
       <label>Изменить описание / рост / характеристики:</label>
       <textarea id="edit-params-field" rows="6"></textarea>
-      <button class="btn-card" id="btn-save-params" style="background:var(--accent-navy); text-align:center;">
+      <button class="btn-card" style="background:var(--accent-navy); text-align:center;" onclick="saveParamsChanges()">
         Сохранить изменения
       </button>
-      <button class="btn-card" id="btn-close-params" style="text-align:center;">Отмена</button>
+      <button class="btn-card" onclick="document.getElementById('params-modal').classList.remove('active')" style="text-align:center;">Отмена</button>
     </div>
   </div>
 
@@ -472,13 +472,192 @@
       <h3 style="font-size:16px;">TiE Заблокирован</h3>
       <p style="font-size:12px; color:var(--text-muted);">Введите PIN-код</p>
       <input type="password" id="pin-unlock-field" placeholder="0000" style="text-align:center; font-size:18px;">
-      <button class="btn-card" id="btn-unlock-app" style="background:var(--accent-navy); text-align:center;">
+      <button class="btn-card" style="background:var(--accent-navy); text-align:center;" onclick="unlockAppWithPin()">
         Разблокировать
       </button>
     </div>
   </div>
 </div>
 
-<script src="app.js"></script>
+<script>
+  let activeRP = null;
+  let rpDatabase = JSON.parse(localStorage.getItem('tie_rp_db') || '[]');
+  let trashDatabase = JSON.parse(localStorage.getItem('tie_trash_db') || '[]');
+  let publicBots = JSON.parse(localStorage.getItem('tie_bots_db') || '[]');
+
+  function openPage(pageId) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById('p-' + pageId);
+    if (target) target.classList.add('active');
+    
+    if (pageId === 'history') renderHistoryList();
+    if (pageId === 'trash') renderTrashList();
+    if (pageId === 'bots') renderPublicBots();
+  }
+
+  function createNewRP() {
+    const name = document.getElementById('rp-name').value.trim() || 'Новая история';
+    const desc = document.getElementById('rp-desc').value.trim() || 'Параметры не заданы';
+    const isPub = document.getElementById('rp-pub').checked;
+    const dateStr = new Date().toLocaleDateString('ru-RU');
+
+    const newEntry = { id: Date.now(), name, desc, date: dateStr, msgs: [] };
+    rpDatabase.push(newEntry);
+    localStorage.setItem('tie_rp_db', JSON.stringify(rpDatabase));
+
+    if (isPub) {
+      publicBots.push({ name, desc, author: 'Пользователь' });
+      localStorage.setItem('tie_bots_db', JSON.stringify(publicBots));
+    }
+
+    document.getElementById('rp-name').value = '';
+    document.getElementById('rp-desc').value = '';
+    launchChatSession(newEntry.id);
+  }
+
+  function renderHistoryList() {
+    const box = document.getElementById('history-list');
+    box.innerHTML = rpDatabase.length === 0 ? '<p style="color:var(--text-muted); font-size:13px;">Историй пока нет.</p>' : '';
+    
+    rpDatabase.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'btn-card';
+      card.style.flexDirection = 'row';
+      card.style.justifyContent = 'space-between';
+      card.style.alignItems = 'center';
+      card.innerHTML = `
+        <div onclick="launchChatSession(${item.id})" style="flex:1;">
+          <strong>${item.name}</strong><br>
+          <small style="color:var(--text-muted);">${item.date}</small>
+        </div>
+        <button onclick="moveToTrash(${item.id})" style="background:var(--danger); border:none; color:#fff; padding:8px 12px; border-radius:4px; cursor:pointer;">🗑</button>
+      `;
+      box.appendChild(card);
+    });
+  }
+
+  function launchChatSession(id) {
+    activeRP = rpDatabase.find(x => x.id === id);
+    document.getElementById('chat-title-text').innerText = activeRP.name;
+    renderChatMessages();
+    openPage('chat');
+  }
+
+  function renderChatMessages() {
+    const box = document.getElementById('chat-messages-box');
+    box.innerHTML = activeRP.msgs.length === 0 ? '<div class="msg-bubble bot">Привет! Начнем нашу историю без цензуры.</div>' : '';
+    
+    activeRP.msgs.forEach((m, idx) => {
+      const isBot = m.role === 'bot';
+      box.innerHTML += `
+        <div class="msg-bubble ${m.role}">
+          ${m.text}
+          ${isBot ? `
+            <div class="msg-actions">
+              <button class="report-btn" onclick="reportMessage(${idx})">⚠️ Жалоба</button>
+              <span style="color:var(--accent-beige)">Правки: ${m.edits || 0}/9</span>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    });
+    box.scrollTop = box.scrollHeight;
+  }
+
+  function sendChatMessage() {
+    const input = document.getElementById('chat-input-field');
+    const val = input.value.trim();
+    if (!val) return;
+
+    activeRP.msgs.push({ role: 'user', text: val });
+    activeRP.msgs.push({ role: 'bot', text: 'Понял тебя. Продолжаем отыгрыш по твоим правилам.', edits: 0 });
+
+    input.value = '';
+    localStorage.setItem('tie_rp_db', JSON.stringify(rpDatabase));
+    renderChatMessages();
+  }
+
+  function reportMessage(idx) {
+    const msg = activeRP.msgs[idx];
+    if ((msg.edits || 0) < 9) {
+      msg.edits = (msg.edits || 0) + 1;
+      msg.text = '[Сообщение отправлено на перегенерацию по жалобе]';
+      localStorage.setItem('tie_rp_db', JSON.stringify(rpDatabase));
+      renderChatMessages();
+    } else {
+      alert('Достигнут лимит правок (9/9) для этого сообщения.');
+    }
+  }
+
+  function openParamsModal() {
+    document.getElementById('edit-params-field').value = activeRP.desc;
+    document.getElementById('params-modal').classList.add('active');
+  }
+
+  function saveParamsChanges() {
+    activeRP.desc = document.getElementById('edit-params-field').value;
+    localStorage.setItem('tie_rp_db', JSON.stringify(rpDatabase));
+    document.getElementById('params-modal').classList.remove('active');
+    alert('Параметры успешно обновлены!');
+  }
+
+  function moveToTrash(id) {
+    const item = rpDatabase.find(x => x.id === id);
+    trashDatabase.push({ ...item, deletedAt: Date.now() });
+    rpDatabase = rpDatabase.filter(x => x.id !== id);
+
+    localStorage.setItem('tie_rp_db', JSON.stringify(rpDatabase));
+    localStorage.setItem('tie_trash_db', JSON.stringify(trashDatabase));
+    renderHistoryList();
+  }
+
+  function renderTrashList() {
+    const box = document.getElementById('trash-items-box');
+    box.innerHTML = trashDatabase.length === 0 ? '<p style="color:var(--text-muted); font-size:13px;">Корзина пуста.</p>' : '';
+    
+    const now = Date.now();
+    trashDatabase.forEach(item => {
+      const hoursLeft = Math.max(0, 86 - Math.floor((now - item.deletedAt) / (1000 * 60 * 60)));
+      box.innerHTML += `
+        <div class="btn-card">
+          <strong>${item.name}</strong>
+          <small style="color:var(--text-muted)">Осталось хранения: ${hoursLeft} ч.</small>
+        </div>
+      `;
+    });
+  }
+
+  function renderPublicBots() {
+    const box = document.getElementById('public-bots-box');
+    box.innerHTML = publicBots.length === 0 ? '<p style="color:var(--text-muted); font-size:13px;">Опубликованных ботов пока нет.</p>' : '';
+    
+    publicBots.forEach(bot => {
+      box.innerHTML += `
+        <div class="btn-card">
+          <strong>🤖 ${bot.name}</strong>
+          <small style="color:var(--text-muted)">${bot.desc}</small>
+        </div>
+      `;
+    });
+  }
+
+  function unlockAppWithPin() {
+    const pin = document.getElementById('app-pin-code').value;
+    const entered = document.getElementById('pin-unlock-field').value;
+    if (entered === pin) {
+      document.getElementById('lock-modal').classList.remove('active');
+      document.getElementById('pin-unlock-field').value = '';
+    } else {
+      alert('Неверный PIN-код!');
+    }
+  }
+
+  const langList = ['RU', 'EN', 'UK', 'DE', 'ZH'];
+  let currentLangIdx = 0;
+  function rotateLanguage() {
+    currentLangIdx = (currentLangIdx + 1) % langList.length;
+    document.getElementById('lang-indicator').innerText = langList[currentLangIdx];
+  }
+</script>
 </body>
 </html>
