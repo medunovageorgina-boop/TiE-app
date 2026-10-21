@@ -74,8 +74,8 @@
     }
 
     .avatar-circle svg {
-      width: 34px;
-      height: 34px;
+      width: 38px;
+      height: 38px;
     }
 
     .brand-logo {
@@ -109,7 +109,7 @@
       display: flex;
     }
 
-    /* КРАСИВЫЕ КНОПКИ ГЛАВНОГО МЕНЮ */
+    /* СТРОГИЕ КНОПКИ */
     .btn-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -153,7 +153,7 @@
       margin-bottom: 6px;
     }
 
-    /* НИЖНЯЯ ПАНЕЛЬ С ВЫКЛЮЧАТЕЛЕМ */
+    /* НИЖНЯЯ ПАНЕЛЬ */
     nav {
       height: 72px;
       background: var(--bg-card);
@@ -189,7 +189,7 @@
       letter-spacing: 1px;
     }
 
-    /* МОДАЛЬНЫЕ ОКНА И ФОРМЫ */
+    /* МОДАЛЬНЫЕ ОКНА */
     .modal-overlay {
       display: none;
       position: absolute;
@@ -239,7 +239,7 @@
       letter-spacing: 0.5px;
     }
 
-    /* БАББЛЫ ЧАТА С ЖАЛОБАМИ И ПРАВКАМИ */
+    /* БАББЛЫ ЧАТА */
     .chat-container {
       flex: 1;
       display: flex;
@@ -306,16 +306,21 @@
 <body>
 
 <div class="app-container">
-  <!-- ШАПКА -->
+  <!-- ШАПКА ПРИЛОЖЕНИЯ С КОТОМ В КРУГЕ -->
   <header>
     <div class="avatar-circle" onclick="openPage('settings')">
-      <svg viewBox="0 0 100 100" fill="none">
-        <path d="M 20,28 L 32,46 L 68,46 L 80,28 L 74,68 C 74,82 26,82 26,68 Z" fill="#000000" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
-        <path d="M 26,33 L 34,44" stroke="#ffffff" stroke-width="2"/>
-        <path d="M 74,33 L 66,44" stroke="#ffffff" stroke-width="2"/>
-        <ellipse cx="40" cy="56" rx="3" ry="4" fill="#ffffff"/>
-        <ellipse cx="60" cy="56" rx="3" ry="4" fill="#ffffff"/>
-        <path d="M 46,68 L 54,68 L 57,84 L 50,92 L 43,84 Z" fill="#ffffff"/>
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Голова и ушки кота -->
+        <path d="M 22,30 L 32,48 L 68,48 L 78,30 L 72,68 C 72,80 28,80 28,68 Z" fill="#000000" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+        <!-- Внутренняя линия ушей -->
+        <path d="M 27,35 L 33,45" stroke="#ffffff" stroke-width="2"/>
+        <path d="M 73,35 L 67,45" stroke="#ffffff" stroke-width="2"/>
+        <!-- Глаза -->
+        <ellipse cx="41" cy="57" rx="3" ry="4" fill="#ffffff"/>
+        <ellipse cx="59" cy="57" rx="3" ry="4" fill="#ffffff"/>
+        <!-- Белый галстук -->
+        <path d="M 46,68 L 54,68 L 57,85 L 50,93 L 43,85 Z" fill="#ffffff"/>
+        <!-- Узел галстука -->
         <polygon points="45,64 55,64 53,68 47,68" fill="#ffffff"/>
       </svg>
     </div>
@@ -328,8 +333,8 @@
     <!-- ГЛАВНОЕ МЕНЮ -->
     <div id="p-home" class="page active">
       <button class="btn-card" onclick="openPage('history')">
-        <span>📋 ИСТОРИЯ</span>
-        <small style="color:var(--text-muted)">Все текстовые RP сюжеты</small>
+        <span>ИСТОРИЯ RP</span>
+        <small style="color:var(--text-muted)">Все текстовые сюжеты</small>
       </button>
 
       <div class="grid-2">
@@ -341,13 +346,12 @@
           <strong>НОВЫЙ RP</strong>
         </button>
         <button class="btn-card" onclick="openPage('settings')" style="justify-content:center; align-items:center; text-align:center;">
-          <span>⚙️</span>
           <strong>НАСТРОЙКИ</strong>
         </button>
       </div>
 
       <button class="btn-card" onclick="openPage('bots')" style="padding:22px; text-align:center; align-items:center;">
-        <strong>🤖 БОТЫ ДЛЯ RP</strong>
+        <strong>БОТЫ ДЛЯ RP</strong>
       </button>
     </div>
 
@@ -399,7 +403,7 @@
           <strong id="chat-title-text">Потерянная расчёска</strong><br>
           <small style="color:var(--accent-beige)">Нажмите для изменения параметров</small>
         </div>
-        <span style="font-size:16px;">✏️</span>
+        <span style="font-size:12px; color:var(--accent-beige);">[ПРАВКА]</span>
       </div>
 
       <div class="chat-container" id="chat-messages-box"></div>
@@ -530,7 +534,7 @@
           <strong>${item.name}</strong><br>
           <small style="color:var(--text-muted);">${item.date}</small>
         </div>
-        <button onclick="moveToTrash(${item.id})" style="background:var(--danger); border:none; color:#fff; padding:8px 12px; border-radius:4px; cursor:pointer;">🗑</button>
+        <button onclick="moveToTrash(${item.id})" style="background:var(--danger); border:none; color:#fff; padding:8px 12px; border-radius:4px; cursor:pointer;">Удалить</button>
       `;
       box.appendChild(card);
     });
@@ -554,7 +558,7 @@
           ${m.text}
           ${isBot ? `
             <div class="msg-actions">
-              <button class="report-btn" onclick="reportMessage(${idx})">⚠️ Жалоба</button>
+              <button class="report-btn" onclick="reportMessage(${idx})">Жалоба</button>
               <span style="color:var(--accent-beige)">Правки: ${m.edits || 0}/9</span>
             </div>
           ` : ''}
@@ -634,7 +638,7 @@
     publicBots.forEach(bot => {
       box.innerHTML += `
         <div class="btn-card">
-          <strong>🤖 ${bot.name}</strong>
+          <strong>${bot.name}</strong>
           <small style="color:var(--text-muted)">${bot.desc}</small>
         </div>
       `;
